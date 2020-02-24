@@ -1,0 +1,45 @@
+﻿@model MediaTracker.Models.ViewModels.Authors.IndexViewModel
+@{
+    ViewBag.Title = "Authors";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <p>
+            There are @Model.Authors.Count authors registered.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <a asp-area="" asp-controller="Authors" asp-action="Add" class="btn btn-primary">Add an author</a>
+    </div>
+</div>
+@if (Model.Authors.Count > 0)
+{
+    @foreach (var author in Model.Authors)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <p>
+                    @author.FirstName @author.LastName
+                </p>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <p>
+                No authors found.
+            </p>
+        </div>
+    </div>
+}

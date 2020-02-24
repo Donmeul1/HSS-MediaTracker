@@ -1,0 +1,90 @@
+﻿@model Author;
+@{
+    ViewBag.Title = "Add author";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2>
+            @ViewBag.Title
+        </h2>
+    </div>
+</div>
+<fieldset>
+    @using (Html.BeginForm("Save", "Authors", null, FormMethod.Post, true, null))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        @Html.ValidationMessageFor(m => m.Id)
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName)
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MiddleName)
+                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LastName)
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Bio)
+                    @Html.TextAreaFor(m => m.Bio, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Bio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DateOfBirth)
+                    @Html.TextBoxFor(m => m.DateOfBirth, new { Id = "datepicker", @class = "form-control date-picker" })
+                    @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DateOfDeath)
+                    @Html.TextBoxFor(m => m.DateOfDeath, new { @class = "form-control date-picker" })
+                    @Html.ValidationMessageFor(m => m.DateOfDeath, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div clas="col-sm-2">
+                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Save" />
+            </div>
+            <div class="col-sm-2">
+                @Html.ActionLink("Cancel", "Index", "Authors", "", new { @class = "btn btn-danger" })
+            </div>
+        </div>
+
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    }
+</fieldset>
